@@ -1,7 +1,7 @@
 
 
 // src/components/Kanye.tsx
-import { Quotes } from '../interfaces/Quotes.ts';
+import { KanyeQuotes } from '../interfaces/KanyeQuotes.ts';
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -13,7 +13,7 @@ const KanyeDiv = styled.div`
     background-color: lightblue;
 `;
 
-const KanyeQuote = ({data}: {data:Quotes}) => {
+const KanyeQuote = ({data}: {data:KanyeQuotes}) => {
     return (
         <KanyeDiv>
             <h1>{data.quote}</h1>
@@ -23,11 +23,11 @@ const KanyeQuote = ({data}: {data:Quotes}) => {
 };
 
 export default function Kanye() {
-    const [quote, setQuote] = useState<Quotes[]>([]);
+    const [quote, setQuote] = useState<KanyeQuotes[]>([]);
     useEffect(() => {
         async function fetchData(): Promise<void> {
             const rawQuote = await fetch("https://api.kanye.rest/");
-            const {quoteData} : {quoteData: Quotes[]} = await rawQuote.json();
+            const {quoteData} : {quoteData: KanyeQuotes[]} = await rawQuote.json();
             setQuote(quoteData);
             
         }
